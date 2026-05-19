@@ -2,7 +2,7 @@
 
 一个本地实时监控 Claude Code 工作状态的可视化系统。通过浏览器以动画猫猫的形式直观展示 Claude Code 的当前状态。
 
-![](https://pic1.imgdb.cn/item/6a0bcd5dfebbe1263e718944.png)
+![](https://pic1.imgdb.cn/item/6a0bd2a8febbe1263e71b432.png)
 ## 特性
 
 - 🎯 **零云服务** - 纯本地 Node.js，开箱即用
