@@ -1,30 +1,37 @@
 # Claude Code Monitor
 
-涓€涓湰鍦板疄鏃剁洃鎺?Claude Code 宸ヤ綔鐘舵€佺殑鍙鍖栫郴缁熴€傞€氳繃娴忚鍣ㄤ互鍔ㄧ敾鐚尗鐨勫舰寮忕洿瑙傚睍绀?Claude Code 鐨勫綋鍓嶇姸鎬併€?
-![image.png](https://pic1.imgdb.cn/item/6a0bcd5dfebbe1263e718944.png)
+一个本地实时监控 Claude Code 工作状态的可视化系统。通过浏览器以动画猫猫的形式直观展示 Claude Code 的当前状态。
 
-## 鐗规€?
-- 馃幆 **闆朵簯鏈嶅姟** - 绾湰鍦?Node.js锛屽紑绠卞嵆鐢?- 鈿?**瀹炴椂鎺ㄩ€?* - SSE (Server-Sent Events) 姣绾у搷搴?- 馃惐 **9绉嶇尗鐚儏缁?* - 涓€鐪煎彲鐭?Claude Code 鍦ㄥ共浠€涔?- 馃搳 **瀹屾暣瀹¤** - 浜嬩欢鏃ュ織璁板綍鎵€鏈夊伐鍏疯皟鐢ㄨ建杩?- 馃帹 **鍏ㄥ睆浠〃鐩?* - 宸﹀彸鍒嗘爮锛岄浂婊氬姩璁捐
-- 馃攧 **澶氫細璇濇敮鎸?* - 鍚屾椂鐩戞帶澶氫釜 Claude Code 浼氳瘽
+## 特性
 
-## 蹇€熷紑濮?
-### 1. 鍏嬮殕椤圭洰
+- 🎯 **零云服务** - 纯本地 Node.js，开箱即用
+- ⚡ **实时推送** - SSE (Server-Sent Events) 毫秒级响应
+- 🐱 **9种猫猫情绪** - 一眼可知 Claude Code 在干什么
+- 📊 **完整审计** - 事件日志记录所有工具调用轨迹
+- 🎨 **全屏仪表盘** - 左右分栏，零滚动设计
+- 🔄 **多会话支持** - 同时监控多个 Claude Code 会话
+
+## 快速开始
+
+### 1. 克隆项目
 
 ```bash
-git clone https://github.com/浣犵殑鐢ㄦ埛鍚?claude-code-monitor.git
+git clone https://github.com/caoqianism/claude-code-monitor.git
 cd claude-code-monitor
 ```
 
-### 2. 鍚姩鐩戞帶鏈嶅姟
+### 2. 启动监控服务
 
 ```bash
 node server.js
 ```
 
-鏈嶅姟灏嗗湪 `http://localhost:3000` 鍚姩銆?
-### 2. 閰嶇疆 Claude Code Hooks
+服务将在 `http://localhost:3000` 启动。打开浏览器访问即可。
 
-缂栬緫 `~/.claude/settings.json`锛堝嵆 `C:\Users\浣犵殑鐢ㄦ埛鍚峔.claude\settings.json`锛夛紝娣诲姞浠ヤ笅鍐呭锛?
+### 3. 配置 Claude Code Hooks
+
+编辑 `~/.claude/settings.json`，添加以下内容：
+
 ```json
 {
   "hooks": {
@@ -34,7 +41,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/浣犵殑鐢ㄦ埛鍚?path/to/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -45,7 +52,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/浣犵殑鐢ㄦ埛鍚?path/to/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -56,7 +63,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/浣犵殑鐢ㄦ埛鍚?path/to/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -67,7 +74,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/浣犵殑鐢ㄦ埛鍚?path/to/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -76,67 +83,81 @@ node server.js
 }
 ```
 
-> 鈿狅笍 **Windows 鐢ㄦ埛娉ㄦ剰**锛氬皢 `浣犵殑鐢ㄦ埛鍚?path/to` 鏇挎崲涓轰綘鐨勫疄闄呰矾寰勩€侰laude Code 浣跨敤 Git Bash 鎵ц hook 鍛戒护锛屽繀椤讳娇鐢ㄦ鏂滄潬璺緞鏍煎紡 `/c/Users/...`锛屽弽鏂滄潬浼氳绯荤粺鍚炴帀锛?
-> 馃挕 璺緞绀轰緥锛?> - 浣犵殑椤圭洰鏀惧湪 `D:\MyProjects\claude-code-monitor` 鈫?`node /d/MyProjects/claude-code-monitor/claude-hook.js`
-> - 浣犵殑鐢ㄦ埛鍚嶆槸 `ZhangSan` 鈫?`node /c/Users/ZhangSan/Projects/claude-code-monitor/claude-hook.js`
+> ⚠️ **Windows 用户注意**：将 `你的用户名/path/to` 替换为你的实际路径。Claude Code 使用 Git Bash 执行 hook 命令，必须使用正斜杠路径格式 `/c/Users/...`，反斜杠会被系统吞掉！
 
-### 3. 鎵撳紑娴忚鍣?
-璁块棶 `http://localhost:3000`锛屽紑濮嬬洃鎺э紒
+> 💡 路径示例：你的项目放在 `D:\Projects\claude-code-monitor`，用户名是 `ZhangSan`，则命令为：
+> ```
+> node /d/Projects/claude-code-monitor/claude-hook.js
+> ```
 
-## 鎯呯华鐘舵€佽鏄?
-| 鎯呯华 | 鐚尗 | 瑙﹀彂浜嬩欢 |
+### 4. 重启 Claude Code
+
+配置完成后，**关闭并重新启动 Claude Code**，hooks 才会生效。
+
+## 情绪状态说明
+
+| 情绪 | 猫猫 | 触发事件 |
 |------|------|----------|
-| idle | 馃惐 | 浼氳瘽鍚姩銆佸瓙浠ｇ悊缁撴潫銆佸帇缂╁畬鎴?|
-| working | 馃樉 | 宸ュ叿璋冪敤銆佸瓙浠ｇ悊鍚姩銆佸帇缂╀腑 |
-| happy | 馃樆 | 浠诲姟瀹屾垚 |
-| debugging | 馃檧 | 宸ュ叿璋冪敤澶辫触 |
-| sleepy | 馃樋 | 浼氳瘽缁撴潫 |
-| excited | 馃樃 | 鏀跺埌閫氱煡 |
-| thinking | 馃樅 | 鐢ㄦ埛杈撳叆 |
-| waiting | 馃惐 | 绛夊緟鏉冮檺 |
-| error | 馃樄 | 鏈煡寮傚父 |
+| idle | 🐱 | 会话启动、子代理结束、压缩完成 |
+| working | 😾 | 工具调用、子代理启动、压缩中 |
+| happy | 😻 | 任务完成 |
+| debugging | 🙀 | 工具调用失败 |
+| sleepy | 😿 | 会话结束 |
+| excited | 😸 | 收到通知 |
+| thinking | 😺 | 用户输入 |
+| waiting | 🐱 | 等待权限 |
+| error | 😹 | 未知异常 |
 
-## 鎶€鏈灦鏋?
+## 技术架构
+
 ```
-Claude Code 鈫?claude-hook.js 鈫?HTTP POST 鈫?server.js 鈫?SSE 鈫?娴忚鍣?```
+Claude Code → claude-hook.js → HTTP POST → server.js → SSE → 浏览器
+```
 
-- **claude-hook.js** - Hook 妗ユ帴鑴氭湰锛屽悓姝ヨ鍙?stdin JSON 骞惰浆鍙?- **server.js** - 鐩戞帶鏈嶅姟绔紙鍗曟枃浠讹級锛岄浂澶栭儴渚濊禆
-- **娴忚鍣ㄤ华琛ㄧ洏** - 鍘熺敓 HTML/CSS/JS锛屾棤妗嗘灦渚濊禆
+- **claude-hook.js** - Hook 桥接脚本，同步读取 stdin JSON 并转发
+- **server.js** - 监控服务端（单文件），零外部依赖
+- **浏览器仪表盘** - 原生 HTML/CSS/JS，无框架依赖
 
-## 鏂囦欢璇存槑
+## 文件说明
 
-- `server.js` - 鐩戞帶鏈嶅姟锛堝惈鍓嶇椤甸潰锛?- `claude-hook.js` - Hook 妗ユ帴鑴氭湰
-- `WHITEPAPER.md` - 绯荤粺鐧界毊涔︼紙璇︾粏鎶€鏈枃妗ｏ級
+- `server.js` - 监控服务（含前端页面）
+- `claude-hook.js` - Hook 桥接脚本
 
-## 鑷畾涔?
-### 鏇存崲琛ㄦ儏鍖?
-缂栬緫 `server.js` 涓殑 `MOOD_ANIM` 瀵硅薄锛屼慨鏀?`emoji` 瀛楁鍗冲彲銆?
-### 娣诲姞鏂颁簨浠剁被鍨?
-1. 鍦?`EVENT_TO_MOOD` 涓坊鍔犱簨浠跺埌鎯呯华鐨勬槧灏?2. 鍦?`EVENT_LABELS` 涓坊鍔犱簨浠剁殑涓枃鏍囩
-3. 鍦?`MSGS` 涓坊鍔犱簨浠剁殑闅忔満娑堟伅姹?
-## 甯歌闂
+## 自定义
 
-### Hook 涓嶈Е鍙戯紵
+### 更换表情包
 
-妫€鏌ワ細
-1. `settings.json` 鏍煎紡鏄惁姝ｇ‘锛堝繀椤绘槸 `matcher` + `hooks` 宓屽缁撴瀯锛?2. Windows 璺緞鏄惁浣跨敤姝ｆ枩鏉?3. 鏌ョ湅 `hook-debug.log` 璋冭瘯鏃ュ織
+编辑 `server.js` 中的 `MOOD_ANIM` 对象，修改 `emoji` 字段即可。
 
-### 浼氳瘽鏃堕暱涓嶆樉绀猴紵
+## 常见问题
 
-纭繚 `server.js` 涓寘鍚?`if (!state.sessionStart) state.sessionStart = Date.now();` 杩欒浠ｇ爜銆?
-### 娴忚鍣ㄦ樉绀烘棫椤甸潰锛?
-娓呴櫎娴忚鍣ㄧ紦瀛橈紝鎴栨寜 `Ctrl+Shift+R` 寮哄埗鍒锋柊銆?
-## 鐏垫劅鏉ユ簮
+### Hook 不触发？
 
-鏈」鐩彈 [ark-face](https://github.com/nicepkg/ark-face) 鍚彂锛屽皢鏋舵瀯绠€鍖栦负绾湰鍦拌繍琛岀増鏈€?
-## 璁稿彲璇?
+1. 检查 `settings.json` 格式是否正确（必须是 `matcher` + `hooks` 嵌套结构）
+2. Windows 路径是否使用正斜杠 `/c/Users/...`
+3. 重启 Claude Code 使配置生效
+
+### 会话时长不显示？
+
+确保 `server.js` 是最新版本。旧版本需要包含 `if (!state.sessionStart) state.sessionStart = Date.now();` 这行代码。
+
+### 浏览器显示旧页面？
+
+按 `Ctrl+Shift+R` 强制刷新，或清除浏览器缓存。
+
+## 灵感来源
+
+本项目受 [ark-face](https://github.com/nicepkg/ark-face) 启发，将架构简化为纯本地运行版本。
+
+## 许可证
+
 MIT
 
-## 璐＄尞
+## 贡献
 
-娆㈣繋鎻愪氦 Issue 鍜?Pull Request锛?
+欢迎提交 Issue 和 Pull Request！
+
 ---
 
-**浣滆€?*: QClaw  
-**鍒涘缓鏃堕棿**: 2026-05-18  
-**鏈€鍚庢洿鏂?*: 2026-05-19
+**作者**: QClaw  
+**创建时间**: 2026-05-18
