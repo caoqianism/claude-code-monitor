@@ -2,8 +2,6 @@
 
 一个本地实时监控 Claude Code 工作状态的可视化系统。通过浏览器以动画猫猫的形式直观展示 Claude Code 的当前状态。
 
-![image.png](https://pic1.imgdb.cn/item/6a0bcd5dfebbe1263e718944.png)
-
 ## 特性
 
 - 🎯 **零云服务** - 纯本地 Node.js，开箱即用
@@ -15,15 +13,22 @@
 
 ## 快速开始
 
-### 1. 启动监控服务
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/caoqianism/claude-code-monitor.git
+cd claude-code-monitor
+```
+
+### 2. 启动监控服务  
 
 ```bash
 node server.js
 ```
 
-服务将在 `http://localhost:3000` 启动。
+服务将在 `http://localhost:3000` 启动。打开浏览器访问即可。
 
-### 2. 配置 Claude Code Hooks
+### 3. 配置 Claude Code Hooks
 
 编辑 `~/.claude/settings.json`，添加以下内容：
 
@@ -36,7 +41,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -47,7 +52,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -58,7 +63,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -69,7 +74,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -78,11 +83,16 @@ node server.js
 }
 ```
 
-> ⚠️ **Windows 用户注意**：Claude Code 使用 Git Bash 执行 hook 命令，必须使用正斜杠路径 `/c/Users/...`，反斜杠会被吞掉！
+> ⚠️ **Windows 用户注意**：将 `你的用户名/path/to` 替换为你的实际路径。Claude Code 使用 Git Bash 执行 hook 命令，必须使用正斜杠路径格式 `/c/Users/...`，反斜杠会被系统吞掉！
 
-### 3. 打开浏览器
+> 💡 路径示例：你的项目放在 `D:\Projects\claude-code-monitor`，用户名是 `ZhangSan`，则命令为：
+> ```
+> node /d/Projects/claude-code-monitor/claude-hook.js
+> ```
 
-访问 `http://localhost:3000`，开始监控！
+### 4. 重启 Claude Code
+
+配置完成后，**关闭并重新启动 Claude Code**，hooks 才会生效。
 
 ## 情绪状态说明
 
@@ -112,7 +122,6 @@ Claude Code → claude-hook.js → HTTP POST → server.js → SSE → 浏览器
 
 - `server.js` - 监控服务（含前端页面）
 - `claude-hook.js` - Hook 桥接脚本
-- `WHITEPAPER.md` - 系统白皮书（详细技术文档）
 
 ## 自定义
 
@@ -120,28 +129,21 @@ Claude Code → claude-hook.js → HTTP POST → server.js → SSE → 浏览器
 
 编辑 `server.js` 中的 `MOOD_ANIM` 对象，修改 `emoji` 字段即可。
 
-### 添加新事件类型
-
-1. 在 `EVENT_TO_MOOD` 中添加事件到情绪的映射
-2. 在 `EVENT_LABELS` 中添加事件的中文标签
-3. 在 `MSGS` 中添加事件的随机消息池
-
 ## 常见问题
 
 ### Hook 不触发？
 
-检查：
-1. `settings.json` 格式是否正确（必须是 `matcher` + `hooks` 嵌套结构）
-2. Windows 路径是否使用正斜杠
-3. 查看 `hook-debug.log` 调试日志
+1. 检查 `settings.json` 格式是否正确（必须是 `matcher` + `hooks` 嵌套结构）
+2. Windows 路径是否使用正斜杠 `/c/Users/...`
+3. 重启 Claude Code 使配置生效
 
 ### 会话时长不显示？
 
-确保 `server.js` 中包含 `if (!state.sessionStart) state.sessionStart = Date.now();` 这行代码。
+确保 `server.js` 是最新版本。旧版本需要包含 `if (!state.sessionStart) state.sessionStart = Date.now();` 这行代码。
 
 ### 浏览器显示旧页面？
 
-清除浏览器缓存，或按 `Ctrl+Shift+R` 强制刷新。
+按 `Ctrl+Shift+R` 强制刷新，或清除浏览器缓存。
 
 ## 灵感来源
 
@@ -157,6 +159,5 @@ MIT
 
 ---
 
-**作者**: QClaw  
-**创建时间**: 2026-05-18  
-**最后更新**: 2026-05-19
+**作者**: QClaw 和 caoqian
+**创建时间**: 2026-05-18
