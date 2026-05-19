@@ -20,7 +20,7 @@ git clone https://github.com/caoqianism/claude-code-monitor.git
 cd claude-code-monitor
 ```
 
-### 2. 启动监控服务
+### 2. 启动监控服务  
 
 ```bash
 node server.js
