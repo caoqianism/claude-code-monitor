@@ -15,7 +15,14 @@
 
 ## 快速开始
 
-### 1. 启动监控服务
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/你的用户名/claude-code-monitor.git
+cd claude-code-monitor
+```
+
+### 2. 启动监控服务
 
 ```bash
 node server.js
@@ -25,7 +32,7 @@ node server.js
 
 ### 2. 配置 Claude Code Hooks
 
-编辑 `~/.claude/settings.json`，添加以下内容：
+编辑 `~/.claude/settings.json`（即 `C:\Users\你的用户名\.claude\settings.json`），添加以下内容：
 
 ```json
 {
@@ -36,7 +43,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -47,7 +54,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -58,7 +65,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -69,7 +76,7 @@ node server.js
         "hooks": [
           {
             "type": "command",
-            "command": "node /c/Users/Administrator/.qclaw/workspace/claude-code-monitor/claude-hook.js"
+            "command": "node /c/Users/你的用户名/path/to/claude-code-monitor/claude-hook.js"
           }
         ]
       }
@@ -78,7 +85,11 @@ node server.js
 }
 ```
 
-> ⚠️ **Windows 用户注意**：Claude Code 使用 Git Bash 执行 hook 命令，必须使用正斜杠路径 `/c/Users/...`，反斜杠会被吞掉！
+> ⚠️ **Windows 用户注意**：将 `你的用户名/path/to` 替换为你的实际路径。Claude Code 使用 Git Bash 执行 hook 命令，必须使用正斜杠路径格式 `/c/Users/...`，反斜杠会被系统吞掉！
+
+> 💡 路径示例：
+> - 你的项目放在 `D:\MyProjects\claude-code-monitor` → `node /d/MyProjects/claude-code-monitor/claude-hook.js`
+> - 你的用户名是 `ZhangSan` → `node /c/Users/ZhangSan/Projects/claude-code-monitor/claude-hook.js`
 
 ### 3. 打开浏览器
 
