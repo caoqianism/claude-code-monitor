@@ -1,0 +1,26 @@
+{
+  "name": "claude-code-monitor",
+  "version": "1.0.0",
+  "description": "本地实时监控 Claude Code 工作状态的可视化系统",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "monitor",
+    "visualization",
+    "realtime"
+  ],
+  "author": "QClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claude-code-monitor.git"
+  }
+}
